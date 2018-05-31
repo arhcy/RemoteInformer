@@ -2,6 +2,7 @@
 using System.Threading;
 using WebSocketSharp;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace artics.RemoteInformer
 {
@@ -77,13 +78,11 @@ namespace artics.RemoteInformer
         {
             IsOpen = true;
 
-            GyroData = new Quaternion(
-                                       BitConverter.ToSingle(args.RawData, 0),
-                                       BitConverter.ToSingle(args.RawData, FloatSize),
-                                       BitConverter.ToSingle(args.RawData, FloatSize * 2),
-                                       BitConverter.ToSingle(args.RawData, FloatSize * 3)
-                                       );
+            NetworkReader reader = new NetworkReader(args.RawData);
+            RemoteInfromerDataMessage message = new RemoteInfromerDataMessage();
+            message.Deserialize(reader);
 
+            GyroData = message.Attitude;
         }
 
         protected void OnConencted(object sender, EventArgs args)

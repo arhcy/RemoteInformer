@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using WebSocketSharp.Server;
 using System;
 using System.Net;
 using System.Net.Sockets;
+using artics.RemoteInformer;
 
-public class Model {
+public class Model
+{
 
     public const int DefaultPort = 11011;
     public const string KeyPort = "port";
@@ -18,7 +21,8 @@ public class Model {
 
     public static bool IsReady;
 
-    public static void Init(UIMediator mediator) {
+    public static void Init(UIMediator mediator)
+    {
         UIMediator = mediator;
 
         Input.gyro.enabled = true;
@@ -31,17 +35,21 @@ public class Model {
         Application.runInBackground = true;
     }
 
-    public static int GetPort() {
+    public static int GetPort()
+    {
         return PlayerPrefs.GetInt(KeyPort, DefaultPort);
     }
 
-    public static void SetPort(int port) {
+    public static void SetPort(int port)
+    {
         PlayerPrefs.SetInt(KeyPort, port);
         PlayerPrefs.Save();
     }
 
-    public static void StartServer() {
-        if (Server != null) {
+    public static void StartServer()
+    {
+        if (Server != null)
+        {
             Server.Stop();
         }
 
@@ -60,7 +68,8 @@ public class Model {
             Server.Start();
             Model.UIMediator.WriteToLog("Starting finished...\n");
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             UIMediator.WriteToLog("Server creation error:" + ex.Message + "\n" + ex.ToString());
         }
 
@@ -70,23 +79,28 @@ public class Model {
         }
     }
 
-    public static void OnError() {
+    public static void OnError()
+    {
         Model.UIMediator.WriteToLog("Error happend...\n");
 
-        if (Server == null || !Server.IsListening) {
+        if (Server == null || !Server.IsListening)
+        {
             StartServer();
         }
 
     }
 
-    public static void OnReady() {
+    public static void OnReady()
+    {
         IsReady = true;
         UIMediator.SetIp(Server.Address.ToString());
-        
+
     }
 
-    public static void Update() {
-        if (IsReady && MainService != null) {
+    public static void Update()
+    {
+        if (IsReady && MainService != null)
+        {
             MainService.SendData(FormMessage());
         }
 
@@ -98,22 +112,14 @@ public class Model {
                                 );
     }
 
-    public static byte[] FormMessage() {
-        byte[] data = new byte[FloatSize * 4];
+    public static byte[] FormMessage()
+    {
+        RemoteInfromerDataMessage message = new RemoteInfromerDataMessage();
+        message.FillWithData();
+        NetworkWriter writer = new NetworkWriter();
+        message.Serialize(writer);
 
-        byte[] value = BitConverter.GetBytes(Input.gyro.attitude.x);
-        System.Buffer.BlockCopy(value, 0, data, 0, FloatSize);
-
-        value = BitConverter.GetBytes(Input.gyro.attitude.y);
-        System.Buffer.BlockCopy(value, 0, data, FloatSize, FloatSize);
-
-        value = BitConverter.GetBytes(Input.gyro.attitude.z);
-        System.Buffer.BlockCopy(value, 0, data, FloatSize * 2, FloatSize);
-
-        value = BitConverter.GetBytes(Input.gyro.attitude.w);
-        System.Buffer.BlockCopy(value, 0, data, FloatSize * 3, FloatSize);
-
-        return data;
+        return writer.AsArray();
     }
 
     public static string GetLocalIPAddress()
@@ -127,7 +133,7 @@ public class Model {
             }
         }
 
-        return("Local IP Address Not Found!");
+        return ("Local IP Address Not Found!");
 
         //return NetworkManager.singleton.networkAddress;
     }
