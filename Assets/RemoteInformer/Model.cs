@@ -10,7 +10,6 @@ using artics.RemoteInformer;
 
 public class Model
 {
-
     public const int DefaultPort = 11011;
     public const string KeyPort = "port";
     public const int FloatSize = 4;
@@ -18,21 +17,22 @@ public class Model
     public static WebSocketServer Server;
     public static MainServer MainService;
     public static UIMediator UIMediator;
+    public static RemoteInfromerGyroMessage LastMessage;
 
     public static bool IsReady;
 
     public static void Init(UIMediator mediator)
     {
+        LastMessage = new RemoteInfromerGyroMessage();
+
         UIMediator = mediator;
+        UIMediator.SetIp(GetLocalIPAddress());
 
         Input.gyro.enabled = true;
         Input.gyro.updateInterval = 0.18f;
-
-        UIMediator.SetIp(GetLocalIPAddress());
+        Application.runInBackground = true;
 
         StartServer();
-
-        Application.runInBackground = true;
     }
 
     public static int GetPort()
@@ -58,8 +58,6 @@ public class Model
             Model.UIMediator.WriteToLog("Starting...\n");
 
             Server = new WebSocketServer("ws://" + GetLocalIPAddress() + ":" + GetPort());
-            //Server = new WebSocketServer("ws://127.0.0.1:" + GetPort());
-            //Server = new WebSocketServer("ws://localhost:" + GetPort());
             Model.UIMediator.WriteToLog("Created server instance\n");
 
             Server.AddWebSocketService<MainServer>("/");
@@ -87,14 +85,12 @@ public class Model
         {
             StartServer();
         }
-
     }
 
     public static void OnReady()
     {
         IsReady = true;
         UIMediator.SetIp(Server.Address.ToString());
-
     }
 
     public static void Update()
@@ -104,20 +100,21 @@ public class Model
             MainService.SendData(FormMessage());
         }
 
-        UIMediator.WriteToData(
+        UIMediator.WriteToData(LastMessage.PrintMessage());
+
+        /*UIMediator.WriteToData(
                                 "X:" + Input.gyro.attitude.x.ToString("0.000") + "\n" +
                                 "Y:" + Input.gyro.attitude.y.ToString("0.000") + "\n" +
                                 "Z:" + Input.gyro.attitude.z.ToString("0.000") + "\n" +
                                 "W:" + Input.gyro.attitude.w.ToString("0.000") + "\n"
-                                );
+                                );*/
     }
 
     public static byte[] FormMessage()
     {
-        RemoteInfromerDataMessage message = new RemoteInfromerDataMessage();
-        message.FillWithData();
+        LastMessage.FillWithData();
         NetworkWriter writer = new NetworkWriter();
-        message.Serialize(writer);
+        LastMessage.Serialize(writer);
 
         return writer.AsArray();
     }

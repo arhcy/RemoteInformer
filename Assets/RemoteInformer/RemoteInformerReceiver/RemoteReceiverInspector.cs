@@ -30,10 +30,12 @@ namespace artics.RemoteInformer
             if (ReceiverInstance.ReceiverCoreInstance == null)
                 return;
 
-            GUILayout.Label("Is initing:" + ReceiverInstance.ReceiverCoreInstance.IsIniting);
-            GUILayout.Label("Is open:" + ReceiverInstance.ReceiverCoreInstance.IsOpen);
+            var receiverCore = ReceiverInstance.ReceiverCoreInstance;
 
-            if (ReceiverInstance.ReceiverCoreInstance.IsReadyToStart())
+            GUILayout.Label("Is initing:" + receiverCore.IsIniting);
+            GUILayout.Label("Is open:" + receiverCore.IsOpen);
+
+            if (receiverCore.IsReadyToStart())
             {
                 if (GUILayout.Button("Connect"))
                 {
@@ -45,19 +47,14 @@ namespace artics.RemoteInformer
 
             if (GUILayout.Button("Disconnect"))
             {
-                ReceiverInstance.ReceiverCoreInstance.Close();
+                receiverCore.Close();
                 EditorApplication.update -= DoUpdate;
             }
 
-            Quaternion gyro = ReceiverInstance.GetGyroData();
-            GUILayout.Label("Gyro:");
-            GUILayout.Label("X:" + Round(gyro.x) + " Y:" + Round(gyro.y) + " Z:" + Round(gyro.z) + " W:" + Round(gyro.w));
+            if (receiverCore.LastMessage != null)
+                GUILayout.Label(receiverCore.LastMessage.PrintMessage());
         }
 
-        protected string Round(float value)
-        {
-            return Math.Round(value, 3).ToString();
-        }
 
         void DoUpdate()
         {

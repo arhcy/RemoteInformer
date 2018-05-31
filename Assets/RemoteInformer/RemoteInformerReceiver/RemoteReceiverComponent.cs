@@ -7,26 +7,14 @@ namespace artics.RemoteInformer
     {
         public static RemoteReceiverComponent Singleton;
 
-        public RremoteInfromerReceiver ReceiverCoreInstance;
+        public RremoteInfromerReceiver<RemoteInfromerGyroMessage> ReceiverCoreInstance;
         public string Address;
         public bool AutoConnect;
         public bool InitSingleton;
 
-        public Quaternion GetGyroData()
-        {
-#if UNITY_EDITOR
-            if (ReceiverCoreInstance == null)
-                return Quaternion.identity;
-
-            return ReceiverCoreInstance.Attitude;
-#else
-        return Input.gyro.attitude;
-#endif
-        }
-
         void Start()
         {
-            ReceiverCoreInstance = new RremoteInfromerReceiver();
+            ReceiverCoreInstance = new RremoteInfromerReceiver<RemoteInfromerGyroMessage>();
 
             if (Address == string.Empty)
                 Address = ReceiverCoreInstance.GetLastAdddress();
@@ -53,6 +41,19 @@ namespace artics.RemoteInformer
         {
             if (ReceiverCoreInstance != null)
                 ReceiverCoreInstance.Close();
+        }
+
+
+        public Quaternion GetGyroAttitude()
+        {
+#if UNITY_EDITOR
+            if (ReceiverCoreInstance == null)
+                return default(Quaternion);
+
+            return ReceiverCoreInstance.LastMessage.Attitude;
+#else
+        return Input.gyro.attitude;
+#endif
         }
     }
 }

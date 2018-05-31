@@ -9,7 +9,6 @@ public class MainServer : WebSocketBehavior
 {
     public MainServer() {
         Model.MainService = this;
-
     }
 
     protected override void OnClose(CloseEventArgs e)
@@ -30,7 +29,6 @@ public class MainServer : WebSocketBehavior
         base.OnOpen();
 
         Model.OnReady();
-
         Model.UIMediator.WriteToLog("Connected:" + Context.User.ToString());
     }
 

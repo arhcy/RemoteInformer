@@ -6,17 +6,16 @@ using UnityEngine.Networking;
 
 namespace artics.RemoteInformer
 {
-    public class RremoteInfromerReceiver
+    public class RremoteInfromerReceiver<T> where T : RemoteInfromerDataMessage, new()
     {
         protected const string AddressKey = "Address";
+
         public string Address = "";
-        public const int FloatSize = 4;
-
-        public Quaternion Attitude;
-        protected WebSocket Socket;
-
+        public T LastMessage;
         public bool IsOpen;
         public bool IsIniting;
+
+        protected WebSocket Socket;
 
         #region Initing
         /// <summary>
@@ -47,6 +46,8 @@ namespace artics.RemoteInformer
             IsOpen = false;
             Address = address;
 
+            LastMessage = new T();
+
             if (Address == string.Empty)
             {
                 Address = GetLastAdddress();
@@ -65,7 +66,6 @@ namespace artics.RemoteInformer
             Socket.OnError += OnDisconnect;
             Socket.OnOpen += OnConencted;
 
-
             Thread initThread = new Thread(Socket.Connect);
             initThread.Start();
         }
@@ -79,10 +79,10 @@ namespace artics.RemoteInformer
             IsOpen = true;
 
             NetworkReader reader = new NetworkReader(args.RawData);
-            RemoteInfromerDataMessage message = new RemoteInfromerDataMessage();
+            T message = new T();
             message.Deserialize(reader);
 
-            Attitude = message.Attitude;
+            LastMessage = message;
         }
 
         protected void OnConencted(object sender, EventArgs args)
@@ -94,7 +94,6 @@ namespace artics.RemoteInformer
         protected void OnDisconnect(object sendder, ErrorEventArgs args)
         {
             IsOpen = false;
-
             Init();
         }
         #endregion

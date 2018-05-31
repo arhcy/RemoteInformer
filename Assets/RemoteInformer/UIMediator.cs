@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIMediator : MonoBehaviour
 {
-
     public InputField Inputport;
     public Text TextIP;
     public Button ButtonRestart;

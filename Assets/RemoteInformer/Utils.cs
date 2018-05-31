@@ -1,12 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace Assets
+namespace artics
 {
-    class Utils
+    public static class Utils
     {
+        public static string PrintRoundedVector(Vector3 vec)
+        {
+            return "X: " + RoundFloat(vec.x) + " Y: " + RoundFloat(vec.y) + " Z: " + RoundFloat(vec.z);
+        }
+
+        public static string PrintRoundedQuaternion(Quaternion quat)
+        {
+            return "X: " + RoundFloat(quat.x) + " Y: " + RoundFloat(quat.y) + " Z: " + RoundFloat(quat.z) + " W: " + RoundFloat(quat.w);
+        }
+
+        public static string RoundFloat(float value)
+        {
+            return Math.Round(value, 3).ToString();
+        }
     }
 }
