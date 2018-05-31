@@ -100,14 +100,7 @@ public class Model
             MainService.SendData(FormMessage());
         }
 
-        UIMediator.WriteToData(LastMessage.PrintMessage());
-
-        /*UIMediator.WriteToData(
-                                "X:" + Input.gyro.attitude.x.ToString("0.000") + "\n" +
-                                "Y:" + Input.gyro.attitude.y.ToString("0.000") + "\n" +
-                                "Z:" + Input.gyro.attitude.z.ToString("0.000") + "\n" +
-                                "W:" + Input.gyro.attitude.w.ToString("0.000") + "\n"
-                                );*/
+        PrintData();
     }
 
     public static byte[] FormMessage()
@@ -117,6 +110,13 @@ public class Model
         LastMessage.Serialize(writer);
 
         return writer.AsArray();
+    }
+
+    public static void PrintData()
+    {
+        RemoteInfromerGyroMessage mess = new RemoteInfromerGyroMessage();
+        mess.FillWithData();
+        UIMediator.WriteToData(mess.PrintMessage());
     }
 
     public static string GetLocalIPAddress()

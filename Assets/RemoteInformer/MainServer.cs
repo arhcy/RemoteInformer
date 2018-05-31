@@ -7,7 +7,8 @@ using WebSocketSharp.Server;
 
 public class MainServer : WebSocketBehavior
 {
-    public MainServer() {
+    public MainServer()
+    {
         Model.MainService = this;
     }
 
@@ -32,7 +33,8 @@ public class MainServer : WebSocketBehavior
         Model.UIMediator.WriteToLog("Connected:" + Context.User.ToString());
     }
 
-    public void SendData(byte[] array) {
+    public void SendData(byte[] array)
+    {
         Send(array);
     }
 
@@ -42,7 +44,7 @@ public class MainServer : WebSocketBehavior
 
         Model.UIMediator.WriteToLog("MainService Error:" + e.ToString() + "\n");
     }
-    
+
 
 
 }

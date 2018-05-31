@@ -32,7 +32,8 @@ public class UIMediator : MonoBehaviour
     {
         Model.Update();
 
-        while (LogQueue.Count > 0) {
+        while (LogQueue.Count > 0)
+        {
             TextConsole.text += LogQueue.Dequeue();
         }
     }
