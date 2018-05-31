@@ -9,8 +9,8 @@ namespace artics.RemoteInformer
 
         public RremoteInfromerReceiver ReceiverCoreInstance;
         public string Address;
-        public bool AutoConnect { get; }
-        public bool InitSingleton { get; }
+        public bool AutoConnect;
+        public bool InitSingleton;
 
         public Quaternion GetGyroData()
         {
