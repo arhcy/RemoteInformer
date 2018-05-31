@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WebSocketSharp;
 using WebSocketSharp.Server;
 using System;
 using System.Net;
@@ -119,7 +118,7 @@ public class Model {
 
     public static string GetLocalIPAddress()
     {
-        /*var host = Dns.GetHostEntry(Dns.GetHostName());
+        var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (var ip in host.AddressList)
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
@@ -128,9 +127,9 @@ public class Model {
             }
         }
 
-        return("Local IP Address Not Found!");*/
+        return("Local IP Address Not Found!");
 
-        return Network.player.ipAddress;
+        //return NetworkManager.singleton.networkAddress;
     }
 
 
