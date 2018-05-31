@@ -2,11 +2,12 @@
 
 namespace artics.RemoteInformer
 {
-    public class RemoteInformerComponent : MonoBehaviour
+    [ExecuteInEditMode]
+    public class RemoteReceiverComponent : MonoBehaviour
     {
-        public static RemoteInformerComponent Singleton;
+        public static RemoteReceiverComponent Singleton;
 
-        public RremoteInfromerReceiver InformerInstance;
+        public RremoteInfromerReceiver ReceiverCoreInstance;
         public string Address;
         public bool AutoConnect { get; }
         public bool InitSingleton { get; }
@@ -14,10 +15,10 @@ namespace artics.RemoteInformer
         public Quaternion GetGyroData()
         {
 #if UNITY_EDITOR
-            if (InformerInstance == null)
+            if (ReceiverCoreInstance == null)
                 return Quaternion.identity;
 
-            return InformerInstance.GyroData;
+            return ReceiverCoreInstance.GyroData;
 #else
         return Input.gyro.attitude;
 #endif
@@ -25,7 +26,10 @@ namespace artics.RemoteInformer
 
         void Start()
         {
-            InformerInstance = new RremoteInfromerReceiver();
+            ReceiverCoreInstance = new RremoteInfromerReceiver();
+
+            if (Address == string.Empty)
+                Address = ReceiverCoreInstance.GetLastAdddress();
 
             if (InitSingleton)
                 Singleton = this;
@@ -36,18 +40,18 @@ namespace artics.RemoteInformer
 
         public void Connect()
         {
-            if (InformerInstance.IsIniting)
+            if (ReceiverCoreInstance.IsIniting)
             {
                 Debug.LogWarning("Socket is initing");
                 return;
             }
 
-            InformerInstance.Init(Address);
+            ReceiverCoreInstance.Init(Address);
         }
 
         private void OnDestroy()
         {
-            InformerInstance.Close();
+            ReceiverCoreInstance.Close();
         }
     }
 }
