@@ -51,7 +51,8 @@ namespace artics.RemoteInformer
 
         private void OnDestroy()
         {
-            ReceiverCoreInstance.Close();
+            if (ReceiverCoreInstance != null)
+                ReceiverCoreInstance.Close();
         }
     }
 }

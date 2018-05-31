@@ -120,7 +120,9 @@ namespace artics.RemoteInformer
         public void Close()
         {
             IsOpen = false;
-            Socket.Close();
+
+            if (Socket != null)
+                Socket.Close();
         }
     }
 }
