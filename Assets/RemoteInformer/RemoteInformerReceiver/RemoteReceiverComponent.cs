@@ -18,7 +18,7 @@ namespace artics.RemoteInformer
             if (ReceiverCoreInstance == null)
                 return Quaternion.identity;
 
-            return ReceiverCoreInstance.GyroData;
+            return ReceiverCoreInstance.Attitude;
 #else
         return Input.gyro.attitude;
 #endif

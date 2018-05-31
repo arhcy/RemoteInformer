@@ -12,7 +12,7 @@ namespace artics.RemoteInformer
         public string Address = "";
         public const int FloatSize = 4;
 
-        public Quaternion GyroData;
+        public Quaternion Attitude;
         protected WebSocket Socket;
 
         public bool IsOpen;
@@ -82,7 +82,7 @@ namespace artics.RemoteInformer
             RemoteInfromerDataMessage message = new RemoteInfromerDataMessage();
             message.Deserialize(reader);
 
-            GyroData = message.Attitude;
+            Attitude = message.Attitude;
         }
 
         protected void OnConencted(object sender, EventArgs args)
