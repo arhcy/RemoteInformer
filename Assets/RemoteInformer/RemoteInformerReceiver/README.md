@@ -8,8 +8,9 @@ RemoteReceiver scripts
 Create a new instance of RremoteInfromerReceiver\< \_ your message type_\>. You
 use `RemoteInfromerStandartMessage` message type if you haven't created custom.
 
-```var ReceiverCoreInstance = new
-RremoteInfromerReceiver<RemoteInfromerStandartMessage>();```
+```C#
+var ReceiverCoreInstance = new RremoteInfromerReceiver<RemoteInfromerStandartMessage>();
+```
 
 <br>
 
@@ -17,17 +18,9 @@ Call Init method with address and port parameters:
 
 ```C#
 ReceiverCoreInstance.Init("192.168.0.1", "11011"); 
-``` 
-
-or
-
-```C#
+//or
 ReceiverCoreInstance.Init("192.168.0.1:11011"); 
-``` 
-
-or
-
-```C#
+//or
 ReceiverCoreInstance.Init("ws://192.168.0.1:11011");
 ```
 
