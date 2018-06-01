@@ -18,17 +18,20 @@ Currently, it sends data of such hardware features:
 -   `Touch positions`
 -   `Touch phases`
 
- <p align="center">
+<p align="center">
 <img src="Documentation media/MainScreen.jpg" width=70% align="center"/>
+ 
+_main screen_
 </p>
+
  
  Instruction:
- =====
+  ======
+
+______________________________
  
  ### 1. Install the app on device
- - you can download APK from this repository
- 
- [Built/RemoteInformer.apk](Built/RemoteInformer.apk)
+ - you can download APK from this repository [Built/RemoteInformer.apk](Built/RemoteInformer.apk)
  - you can download the app from Google Play
  - you can build it manually
 
