@@ -8,26 +8,36 @@ RemoteReceiver scripts
 Create a new instance of RremoteInfromerReceiver\< \_ your message type_\>. You
 use `RemoteInfromerStandartMessage` message type if you haven't created custom.
 
-`var ReceiverCoreInstance = new
-RremoteInfromerReceiver<RemoteInfromerStandartMessage>();`
+```var ReceiverCoreInstance = new
+RremoteInfromerReceiver<RemoteInfromerStandartMessage>();```
 
 <br>
 
 Call Init method with address and port parameters:
 
-` ReceiverCoreInstance.Init("192.168.0.1", "11011");`
+```C#
+ReceiverCoreInstance.Init("192.168.0.1", "11011"); 
+``` 
 
 or
 
-`ReceiverCoreInstance.Init("192.168.0.1:11011");`
+```C#
+ReceiverCoreInstance.Init("192.168.0.1:11011"); 
+``` 
 
 or
 
-` ReceiverCoreInstance.Init("ws://192.168.0.1:11011");`
+```C#
+ReceiverCoreInstance.Init("ws://192.168.0.1:11011");
+```
+
+<br>
 
 To access data from a device - use `LastMessage` field. It contains last deserialized message.
 
-`ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude`
+```C#
+ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude
+```
 
 <br>
 
