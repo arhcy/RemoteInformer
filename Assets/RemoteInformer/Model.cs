@@ -32,11 +32,17 @@ public class Model
         UIMediator = mediator;
         UIMediator.SetIp(GetLocalIPAddress());
 
-        Input.gyro.enabled = true;
-        Input.gyro.updateInterval = 0.18f;
-        Application.runInBackground = true;
+        SetupHardware();
 
         StartServer();
+    }
+
+    public static void SetupHardware()
+    {
+        Input.gyro.enabled = true;
+        Input.gyro.updateInterval = 0.18f;
+        Input.multiTouchEnabled = true;
+        Application.runInBackground = true;
     }
 
     public static int GetPort()
