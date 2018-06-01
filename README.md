@@ -41,6 +41,10 @@ Repository:
 Asset store:
 
 ### 3. Using RemoteReceiver classes in your project
+Use RemoteReceiver scripts to access data from phone in yout project
+
+[RemoteReceiver documentation](Assets/RemoteInformer/RemoteInformerReceiver/README.md)
+
 ### 4. Customization
 
 
