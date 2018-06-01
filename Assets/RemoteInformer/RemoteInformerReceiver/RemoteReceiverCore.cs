@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 namespace artics.RemoteInformer
 {
-    public class RremoteInfromerReceiver<T> where T : RemoteInfromerDataMessage, new()
+    public class RremoteInfromerReceiver<T> where T : IRemoteInfromerMessage, new()
     {
         protected const string AddressKey = "Address";
 
@@ -78,9 +78,8 @@ namespace artics.RemoteInformer
         {
             IsOpen = true;
 
-            NetworkReader reader = new NetworkReader(args.RawData);
             T message = new T();
-            message.Deserialize(reader);
+            message.DeserializeMessage(args.RawData);
 
             LastMessage = message;
         }

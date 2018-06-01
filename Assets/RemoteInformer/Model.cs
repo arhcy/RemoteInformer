@@ -106,10 +106,8 @@ public class Model
     public static byte[] FormMessage()
     {
         LastMessage.FillWithData();
-        NetworkWriter writer = new NetworkWriter();
-        LastMessage.Serialize(writer);
 
-        return writer.AsArray();
+        return LastMessage.SerializeMessage();
     }
 
     public static void PrintData()

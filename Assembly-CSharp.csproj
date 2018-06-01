@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\EditorTools\AsssemblyBuilder.cs" />
     <Compile Include="Assets\RemoteInformer\MainServer.cs" />
+    <Compile Include="Assets\RemoteInformer\Mesages\IRemoteInfromerMessage.cs" />
     <Compile Include="Assets\RemoteInformer\Mesages\RemoteInfromerDataMessage.cs" />
     <Compile Include="Assets\RemoteInformer\Model.cs" />
     <Compile Include="Assets\RemoteInformer\RemoteInformerReceiver\RemoteReceiverComponent.cs" />
