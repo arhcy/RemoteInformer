@@ -1,5 +1,5 @@
 
-Basic documentation https://github.com/arhcy/RemoteInformer/blob/master/README.md
+Start page: https://github.com/arhcy/RemoteInformer/blob/master/README.md
 
 RemoteReceiver scripts
 ======================
