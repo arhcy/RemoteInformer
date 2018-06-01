@@ -1,5 +1,9 @@
 
+Custom data
+=====
+
 You can customize data which application sends. Just create a new class which implements the `IRemoteInfromerMessage` interface.
+### Interface:
 
 This function calls every frame. It fills message with data. 
 
@@ -24,7 +28,9 @@ Deserializes message
 ```C#
 void DeserializeMessage(byte[] data);
 ```
-		
+
+### Code tweaking
+
 To make app send your messages you need to change the alias of `Mode.cs` file and rebuild.
 		
 ```C#
