@@ -3,7 +3,7 @@ Remote data collection app and lib for Unity3d projects.
 
 
 Custom remote data collection app that works in local network without USB
-cables. It easily integrates into Unity3d projects. You can modify and rebuild
+cables. It easily integrates into Unity3d projects. You can use it for testing your VR / AR mobile projects. Also, you can modify and rebuild
 this app to get custom data you need.
 
 
