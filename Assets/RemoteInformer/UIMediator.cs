@@ -11,6 +11,8 @@ public class UIMediator : MonoBehaviour
     public Button ButtonRestart;
     public Text TextConsole;
     public Text TextDataOutput;
+    public Button ButtonGithub;
+    public Button ButtonAssetStore;
 
     protected Queue<string> LogQueue;
 
@@ -23,6 +25,8 @@ public class UIMediator : MonoBehaviour
 
         ButtonRestart.onClick.AddListener(Model.StartServer);
         Inputport.onEndEdit.AddListener(OnPortChanged);
+        ButtonGithub.onClick.AddListener(OnGithubButton);
+        ButtonAssetStore.onClick.AddListener(OnAssetStorebutton);
 
         Inputport.text = Model.GetPort().ToString();
     }
@@ -62,6 +66,16 @@ public class UIMediator : MonoBehaviour
         {
             Model.SetPort(parsed);
         }
+    }
+
+    public void OnGithubButton()
+    {
+        Application.OpenURL("https://github.com/arhcy/RemoteInformer");
+    }
+
+    public void OnAssetStorebutton()
+    {
+        Application.OpenURL("https://github.com/arhcy/RemoteInformer");
     }
 
 }
