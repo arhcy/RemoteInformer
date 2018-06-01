@@ -10,7 +10,7 @@ namespace artics.RemoteInformer
     /// <summary>
     /// Model of message to send Gyro data
     /// </summary>
-    public class RemoteInfromerGyroMessage : MessageBase, IRemoteInfromerMessage
+    public class RemoteInfromerStandartMessage : MessageBase, IRemoteInfromerMessage
     {
         public Quaternion Attitude;
         public Vector3 Gravity;

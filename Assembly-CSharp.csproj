@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{C9126947-2016-DFC9-D65C-DF695B56EB0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,7 +62,7 @@
     <Compile Include="Assets\EditorTools\AsssemblyBuilder.cs" />
     <Compile Include="Assets\RemoteInformer\MainServer.cs" />
     <Compile Include="Assets\RemoteInformer\Mesages\IRemoteInfromerMessage.cs" />
-    <Compile Include="Assets\RemoteInformer\Mesages\RemoteInfromerDataMessage.cs" />
+    <Compile Include="Assets\RemoteInformer\Mesages\RemoteInfromerStandartMessage.cs" />
     <Compile Include="Assets\RemoteInformer\Model.cs" />
     <Compile Include="Assets\RemoteInformer\RemoteInformerReceiver\RemoteReceiverComponent.cs" />
     <Compile Include="Assets\RemoteInformer\RemoteInformerReceiver\RemoteReceiverCore.cs" />

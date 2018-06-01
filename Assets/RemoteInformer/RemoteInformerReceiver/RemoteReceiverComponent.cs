@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// Change MessageType to use your custom messages
-using MessageType = artics.RemoteInformer.RemoteInfromerGyroMessage;
+using MessageType = artics.RemoteInformer.RemoteInfromerStandartMessage;
 
 namespace artics.RemoteInformer
 {

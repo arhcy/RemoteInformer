@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using artics.RemoteInformer;
 
 /// Change MessageType to use your custom messages
-using MessageType = artics.RemoteInformer.RemoteInfromerGyroMessage;
+using MessageType = artics.RemoteInformer.RemoteInfromerStandartMessage;
 
 public class Model
 {
@@ -116,7 +116,7 @@ public class Model
 
     public static void PrintData()
     {
-        RemoteInfromerGyroMessage mess = new RemoteInfromerGyroMessage();
+        RemoteInfromerStandartMessage mess = new RemoteInfromerStandartMessage();
         mess.FillWithData();
         UIMediator.WriteToData(mess.PrintMessage());
     }
