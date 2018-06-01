@@ -1,4 +1,6 @@
 
+Start page: https://github.com/arhcy/RemoteInformer/blob/master/README.md
+
 Custom data
 =====
 
@@ -29,7 +31,7 @@ Deserializes message
 void DeserializeMessage(byte[] data);
 ```
 
-### Code tweaking
+### Code tweaking:
 
 To make app send your messages you need to change the alias of `Mode.cs` file and rebuild.
 		
