@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 
+/// Change MessageType to use your custom messages
+using MessageType = artics.RemoteInformer.RemoteInfromerGyroMessage;
+
 namespace artics.RemoteInformer
 {
-    [ExecuteInEditMode]
     public class RemoteReceiverComponent : MonoBehaviour
     {
         public static RemoteReceiverComponent Singleton;
 
-        public RremoteInfromerReceiver<RemoteInfromerGyroMessage> ReceiverCoreInstance;
+        public RremoteInfromerReceiver<MessageType> ReceiverCoreInstance;
         public string Address;
         public bool AutoConnect;
         public bool InitSingleton;
 
         void Start()
         {
-            ReceiverCoreInstance = new RremoteInfromerReceiver<RemoteInfromerGyroMessage>();
+            ReceiverCoreInstance = new RremoteInfromerReceiver<MessageType>();
 
             if (Address == string.Empty)
                 Address = ReceiverCoreInstance.GetLastAdddress();
@@ -43,7 +45,10 @@ namespace artics.RemoteInformer
                 ReceiverCoreInstance.Close();
         }
 
-
+        /// <summary>
+        /// example of data getting customization.
+        /// </summary>
+        /// <returns></returns>
         public Quaternion GetGyroAttitude()
         {
 #if UNITY_EDITOR
@@ -55,5 +60,6 @@ namespace artics.RemoteInformer
         return Input.gyro.attitude;
 #endif
         }
+
     }
 }

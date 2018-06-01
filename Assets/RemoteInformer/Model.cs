@@ -8,8 +8,12 @@ using System.Net;
 using System.Net.Sockets;
 using artics.RemoteInformer;
 
+/// Change MessageType to use your custom messages
+using MessageType = artics.RemoteInformer.RemoteInfromerGyroMessage;
+
 public class Model
 {
+
     public const int DefaultPort = 11011;
     public const string KeyPort = "port";
     public const int FloatSize = 4;
@@ -17,13 +21,13 @@ public class Model
     public static WebSocketServer Server;
     public static MainServer MainService;
     public static UIMediator UIMediator;
-    public static RemoteInfromerGyroMessage LastMessage;
+    public static MessageType LastMessage;
 
     public static bool IsReady;
 
     public static void Init(UIMediator mediator)
     {
-        LastMessage = new RemoteInfromerGyroMessage();
+        LastMessage = new MessageType();
 
         UIMediator = mediator;
         UIMediator.SetIp(GetLocalIPAddress());
