@@ -5,7 +5,7 @@ RemoteReceiver scripts
 
 <br>
 
-Create a new instance of RremoteInfromerReceiver\< \_ your message type_\>. You
+Create a new instance of `RremoteInfromerReceiver<` *your message type* `>`. You
 use `RemoteInfromerStandartMessage` message type if you haven't created custom.
 
 ```C#
