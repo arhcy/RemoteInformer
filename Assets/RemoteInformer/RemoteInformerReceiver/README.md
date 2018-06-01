@@ -49,4 +49,6 @@ This component automatically creates `ReceiverCoreInstance` instance, can automa
 `Auto Connect` - connects to the server when the Start() function calls.
 
 `Init Singleton` - stores reference of this component in the static variable. You can access this component from anywhere.
-`RemoteReceiverComponent.Singleton`
+```C#
+RemoteReceiverComponent.Singleton.ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude
+```
