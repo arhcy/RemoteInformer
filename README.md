@@ -33,12 +33,15 @@ _main screen_
  - you can download the app from Google Play
  - you can build it manually
 
-### 2. Install receiver unipackage into your project
+### 2. Install receiver unitypackage into your project
 
 Repository:
 [dRemoteInformerReceiver.unitypackageas](UnityPackage/RemoteInformerReceiver.unitypackage)
 
 Asset store:
+
+### 3. Using RemoteReceiver classes in your project
+### 4. Customization
 
 
 
