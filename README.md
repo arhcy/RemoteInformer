@@ -27,8 +27,6 @@ _main screen_
  
  Instruction:
   ======
-
-______________________________
  
  ### 1. Install the app on device
  - you can download APK from this repository [Built/RemoteInformer.apk](Built/RemoteInformer.apk)
