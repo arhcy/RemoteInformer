@@ -38,7 +38,7 @@ ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude
 This component automatically creates `ReceiverCoreInstance` instance, can automatically connect to the server on your phone and visualize results from in the inspector.
 
 <p align=center>
-  <img src="../../../Documentation media/ComponentScreen.png" width=30%/>
+  <img src="https://github.com/arhcy/RemoteInformer/blob/master/Documentation%20media/ComponentScreen.png" width=30%/>
   
   </p>
   
@@ -51,4 +51,38 @@ This component automatically creates `ReceiverCoreInstance` instance, can automa
 `Init Singleton` - stores reference of this component in the static variable `RemoteReceiverComponent.Singleton`. You can access this component from anywhere.
 ```C#
 RemoteReceiverComponent.Singleton.ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude
+```
+
+RemoteReceiverComponent customization:
+=====
+
+### Custom messages
+You can easily change the type of message. Just change alias in the head of `RemoteReceiverComponent.cs` file.
+
+```C#
+/// Change MessageType to use your custom messages
+using MessageType = artics.RemoteInformer.RemoteInfromerStandartMessage;
+```
+
+More about messages customizations:
+(ness cust)[]
+
+### Writing custom wrappers:
+You can override the component and write custom wrappers for correct data access depending on platform.
+```C#
+        /// <summary>
+        /// example of data getting customization.
+        /// </summary>
+        /// <returns></returns>
+        public Quaternion GetGyroAttitude()
+        {
+#if UNITY_EDITOR
+            if (ReceiverCoreInstance == null)
+                return default(Quaternion);
+
+            return ReceiverCoreInstance.LastMessage.Attitude;
+#else
+        return Input.gyro.attitude;
+#endif
+        }
 ```
