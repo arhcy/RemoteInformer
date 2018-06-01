@@ -44,11 +44,11 @@ This component automatically creates `ReceiverCoreInstance` instance, can automa
   
   <br>
   
-`Address`  - You need to provide the address of  your phone in the format "address:port".
+`Address`  - You need to provide the address of  your phone in the format `"address:port"`.
 
 `Auto Connect` - connects to the server when the Start() function calls.
 
-`Init Singleton` - stores reference of this component in the static variable. You can access this component from anywhere.
+`Init Singleton` - stores reference of this component in the static variable `RemoteReceiverComponent.Singleton`. You can access this component from anywhere.
 ```C#
 RemoteReceiverComponent.Singleton.ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude
 ```
