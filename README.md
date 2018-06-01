@@ -46,6 +46,9 @@ Use RemoteReceiver scripts to access data from phone in yout project
 [RemoteReceiver documentation](Assets/RemoteInformer/RemoteInformerReceiver/README.md)
 
 ### 4. Customization
+You can customize data which application sends. 
+
+[RemoteReceiver documentation](Assets/RemoteInformer/Messages/README.md)
 
 
 
