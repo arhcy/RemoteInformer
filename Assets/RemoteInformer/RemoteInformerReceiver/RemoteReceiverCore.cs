@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Collections.Generic;
 using WebSocketSharp;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ namespace artics.RemoteInformer
         public bool IsIniting;
 
         protected WebSocket Socket;
+
+#if NET_2_0 || NET_2_0_SUBSET
+        protected Queue<byte[]> IncomingQueue;
+#endif
 
         #region Initing
         /// <summary>
@@ -77,16 +82,24 @@ namespace artics.RemoteInformer
         {
             IsOpen = true;
 
+#if NET_2_0 || NET_2_0_SUBSET
+            lock (IncomingQueue)
+                IncomingQueue.Enqueue(args.RawData);
+#else
             T message = new T();
             message.DeserializeMessage(args.RawData);
-
             LastMessage = message;
+#endif
         }
 
         protected void OnConencted(object sender, EventArgs args)
         {
             IsIniting = false;
             IsOpen = true;
+
+#if NET_2_0 || NET_2_0_SUBSET
+            IncomingQueue = new Queue<byte[]>();
+#endif
         }
 
         protected void OnDisconnect(object sendder, ErrorEventArgs args)
@@ -95,6 +108,20 @@ namespace artics.RemoteInformer
             Init();
         }
         #endregion
+
+#if NET_2_0 || NET_2_0_SUBSET
+        /// <summary>
+        /// You need to call this function manually if you do not use <seealso cref="RemoteReceiverComponent"/>
+        /// </summary>
+        public void DoUpdate() {
+            if (IncomingQueue.Count > 0) {
+                T message = new T();
+                message.DeserializeMessage(IncomingQueue.Dequeue());
+
+                LastMessage = message;
+            }
+        }
+#endif
 
         #region utils
         public string FormAddreess(string address, string port)
@@ -111,7 +138,7 @@ namespace artics.RemoteInformer
         {
             return !IsIniting && !IsOpen;
         }
-        #endregion
+#endregion
 
         public void Close()
         {

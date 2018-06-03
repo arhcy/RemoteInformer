@@ -27,7 +27,7 @@ namespace artics
             return Math.Round(value, RoundRange).ToString();
         }
 
-        public static string PrintTouchInfo(Vector3[] positions, TouchPhase[] phases)
+        public static string PrintTouchInfo(Vector3[] positions, short[] phases)
         {
             string output = "Touches: ";
 
@@ -35,7 +35,7 @@ namespace artics
                 return output + "\n";
 
             for (int i = 0; i < positions.Length; i++)
-                output += "[" + positions[i] + " phase:" + phases[i] + "]  ";
+                output += "[" + positions[i] + " phase:" + (short)phases[i] + "]  ";
 
             return output;
         }

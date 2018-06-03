@@ -39,6 +39,14 @@ namespace artics.RemoteInformer
             ReceiverCoreInstance.Init(Address);
         }
 
+#if NET_2_0 || NET_2_0_SUBSET
+        private void Update()
+        {
+            if (ReceiverCoreInstance.IsOpen)
+                ReceiverCoreInstance.DoUpdate();
+        }
+#endif
+
         private void OnDestroy()
         {
             if (ReceiverCoreInstance != null)

@@ -16,7 +16,7 @@ namespace artics.RemoteInformer
         public float HorizontalAxis;
         public float VerticalAxis;
         public Vector3[] TouchPositions;
-        public TouchPhase[] TouchPhases;
+        public short[] TouchPhases;
 
         public virtual void FillWithData()
         {
@@ -29,11 +29,11 @@ namespace artics.RemoteInformer
 
             Touch[] touches = Input.touches;
             TouchPositions = new Vector3[touches.Length];
-            TouchPhases = new TouchPhase[touches.Length];
+            TouchPhases = new short[touches.Length];
 
             for (int i = 0; i < touches.Length; i++) {
                 TouchPositions[i] = touches[i].position;
-                TouchPhases[i] = touches[i].phase;
+                TouchPhases[i] = (short)touches[i].phase;
             }
         }
 
@@ -60,6 +60,7 @@ namespace artics.RemoteInformer
         public virtual void DeserializeMessage(byte[] data)
         {
             NetworkReader reader = new NetworkReader(data);
+            reader.SeekZero();
             Deserialize(reader);
         }
     }
