@@ -39,7 +39,6 @@ namespace artics.RemoteInformer
                 if (GUILayout.Button("Connect"))
                 {
                     ReceiverInstance.Connect();
-
                     EditorApplication.update += DoUpdate;
                 }
             }
