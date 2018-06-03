@@ -2,7 +2,6 @@
 using System.Threading;
 using WebSocketSharp;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace artics.RemoteInformer
 {

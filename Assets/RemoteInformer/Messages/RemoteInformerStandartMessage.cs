@@ -1,8 +1,5 @@
-﻿using System;
-using UnityEngine.Networking;
+﻿using UnityEngine.Networking;
 using UnityEngine;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace artics.RemoteInformer
 {
