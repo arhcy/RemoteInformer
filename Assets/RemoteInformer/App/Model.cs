@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using artics.RemoteInformer;
 
 /// Change MessageType to use your custom messages
-using MessageType = artics.RemoteInformer.RemoteInfromerStandartMessage;
+using MessageType = artics.RemoteInformer.RemoteInformerStandartMessage;
 
 public class Model
 {
@@ -122,7 +122,7 @@ public class Model
 
     public static void PrintData()
     {
-        RemoteInfromerStandartMessage mess = new RemoteInfromerStandartMessage();
+        RemoteInformerStandartMessage mess = new RemoteInformerStandartMessage();
         mess.FillWithData();
         UIMediator.WriteToData(mess.PrintMessage());
     }

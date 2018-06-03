@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 namespace artics.RemoteInformer
 {
-    public class RremoteInfromerReceiver<T> where T : IRemoteInfromerMessage, new()
+    public class RremoteInfromerReceiver<T> where T : IRemoteInformerMessage, new()
     {
         protected const string AddressKey = "Address";
 

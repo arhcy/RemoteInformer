@@ -8,11 +8,11 @@ RemoteReceiver scripts
 
 <br>
 
-Create a new instance of `RremoteInfromerReceiver<` *your message type* `>`. You
-use `RemoteInfromerStandartMessage` message type if you haven't created custom.
+Create a new instance of `RremoteInformerReceiver<` *your message type* `>`. You
+use `RemoteInformerStandartMessage` message type if you haven't created custom.
 
 ```C#
-var ReceiverCoreInstance = new RremoteInfromerReceiver<RemoteInfromerStandartMessage>();
+var ReceiverCoreInstance = new RremoteInformerReceiver<RemoteInformerStandartMessage>();
 ```
 
 <br>
@@ -64,7 +64,7 @@ You can easily change the type of message. Just change alias in the head of `Rem
 
 ```C#
 /// Change MessageType to use your custom messages
-using MessageType = artics.RemoteInformer.RemoteInfromerStandartMessage;
+using MessageType = artics.RemoteInformer.RemoteInformerStandartMessage;
 ```
 
 More about messages customizations:

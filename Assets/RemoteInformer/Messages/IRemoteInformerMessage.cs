@@ -10,7 +10,7 @@ namespace artics.RemoteInformer
     /// Message interface. 
     /// Yoy can create custom messages to transfer your custom data
     /// </summary>
-    public interface IRemoteInfromerMessage
+    public interface IRemoteInformerMessage
     {
         /// <summary>
         /// This function calls every frame. It fills message with data. 

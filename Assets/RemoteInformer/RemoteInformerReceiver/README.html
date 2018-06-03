@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<p>Main page: <a href = "https://github.com/arhcy/RemoteInformer/blob/master/README.md">https://github.com/arhcy/RemoteInformer/blob/master/README.md</a></p>
+<h1>RemoteReceiver scripts</h1>
+<h3>Basic usage:</h3>
+<p>Create a new instance of <code>RremoteInformerReceiver&lt;</code> <em>your message type</em> <code>&gt;</code>. You use <code>RemoteInformerStandartMessage</code> message type if you haven't created custom.</p>
+<pre><code>var ReceiverCoreInstance = new RremoteInformerReceiver&lt;RemoteInformerStandartMessage&gt;();</code></pre>
+<p>Call Init method with address and port parameters:</p>
+<pre><code>ReceiverCoreInstance.Init(&quot;192.168.0.1&quot;, &quot;11011&quot;); 
+//or
+ReceiverCoreInstance.Init(&quot;192.168.0.1:11011&quot;); 
+//or
+ReceiverCoreInstance.Init(&quot;ws://192.168.0.1:11011&quot;);</code></pre>
+<p>To access data from a device - use <code>LastMessage</code> field. It contains last deserialized message.</p>
+<pre><code>ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude</code></pre>
+<h3>Using RemoteReceiverComponent</h3>
+<p>This component automatically creates <code>ReceiverCoreInstance</code> instance, can automatically connect to the server on your phone and visualize results from in the inspector.</p>
+<p><code>Address</code> - You need to provide the address of your phone in the format <code>&quot;address:port&quot;</code>.</p>
+<p><code>Auto Connect</code> - connects to the server when the Start() function calls.</p>
+<p><code>Init Singleton</code> - stores reference of this component in the static variable <code>RemoteReceiverComponent.Singleton</code>. You can access this component from anywhere.</p>
+<pre><code>RemoteReceiverComponent.Singleton.ReceiverCoreInstance.LastMessage.Attitude //gets gyro attitude</code></pre>
+<h1>RemoteReceiverComponent customization:</h1>
+<h3>Custom messages</h3>
+<p>You can easily change the type of message. Just change alias in the head of <code>RemoteReceiverComponent.cs</code> file.</p>
+<pre><code>/// Change MessageType to use your custom messages
+using MessageType = artics.RemoteInformer.RemoteInformerStandartMessage;</code></pre>
+<p>More about messages customizations: (ness cust)[]</p>
+<h3>Writing custom wrappers:</h3>
+<p>You can override the component and write custom wrappers for correct data access depending on platform.</p>
+<pre><code>        /// &lt;summary&gt;
+        /// example of data getting customization.
+        /// &lt;/summary&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        public Quaternion GetGyroAttitude()
+        {
+#if UNITY_EDITOR
+            if (ReceiverCoreInstance == null)
+                return default(Quaternion);
+
+            return ReceiverCoreInstance.LastMessage.Attitude;
+#else
+        return Input.gyro.attitude;
+#endif
+        }</code></pre>
+</body>
+</html>

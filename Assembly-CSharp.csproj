@@ -62,8 +62,8 @@
     <Compile Include="Assets\RemoteInformer\App\MainServer.cs" />
     <Compile Include="Assets\RemoteInformer\App\Model.cs" />
     <Compile Include="Assets\RemoteInformer\App\UIMediator.cs" />
-    <Compile Include="Assets\RemoteInformer\Messages\IRemoteInfromerMessage.cs" />
-    <Compile Include="Assets\RemoteInformer\Messages\RemoteInfromerStandartMessage.cs" />
+    <Compile Include="Assets\RemoteInformer\Messages\IRemoteInformerMessage.cs" />
+    <Compile Include="Assets\RemoteInformer\Messages\RemoteInformerStandartMessage.cs" />
     <Compile Include="Assets\RemoteInformer\RemoteInformerReceiver\RemoteReceiverComponent.cs" />
     <Compile Include="Assets\RemoteInformer\RemoteInformerReceiver\RemoteReceiverCore.cs" />
     <Compile Include="Assets\RemoteInformer\RemoteInformerReceiver\RemoteReceiverInspector.cs" />
