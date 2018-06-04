@@ -3,8 +3,7 @@ Remote data collection app and lib for Unity3d projects.
 
 
 Custom remote data collection app that works on local network without USB
-cables. It easily integrates into Unity3d projects. You can use it for testing your VR / AR mobile projects. Also, you can modify and rebuild
-this app to get custom data you need.
+cables. It easily integrates into Unity3d projects. You can use it for testing your VR / AR mobile projects. Also, you can modify and rebuild this app to get custom data you need.
 
 
 Currently, it sends data of such hardware features:
@@ -30,10 +29,10 @@ _main screen_
  
  ### 1. Install the app on device
  - you can download APK from this repository [Built/RemoteInformer.apk](Built/RemoteInformer.apk)
- - you can download the app from Google Play
+ - you can download the app from [Google Play](https://play.google.com/store/apps/details?id=com.archypiragkov.RemoteInformer)
  - you can build it manually
 
-### 2. Install receiver unitypackage into your project
+### 2. Install receiver unitypackage into your project (Unity 5.2+ required)
 
 Repository:
 [RemoteInformerReceiver.unitypackageas](UnityPackage/RemoteInformerReceiver.unitypackage)
